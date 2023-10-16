@@ -1,0 +1,33 @@
+server:
+  port: 8084
+app:
+  security:
+    enabled: true
+spring:
+  config:
+    activate:
+      on-profile: security
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://34.175.46.140:8081/realms/crai-realm
+        registration:
+          keycloak:
+            provider: keycloak
+            client-name: crai-client
+            client-id: crai-client
+            client-secret: V9MIjL2L6kMHhg32T5AbE2vCNIS0cOcE
+            scope: openid,offline_access,profile
+#            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#            redirect_uri: "http://localhost:8081/user"
+            authorization-grant-type: authorization_code
+      resourceserver:
+        jwt:
+          issuer-uri: http://34.175.46.140:8081/realms/crai-realm
+#          audiences: https://my-resource-server.example.com
+
+logging:
+  level:
+    org.hibernate.type: trace

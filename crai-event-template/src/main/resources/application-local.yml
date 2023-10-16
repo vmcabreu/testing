@@ -1,0 +1,89 @@
+server:
+  port: 8081
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userDb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 10
+      idle-timeout: 60000
+      minimum-idle: 4
+  jpa:
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        user_sql_comments: ture
+        format_sql: true
+        #        jdb:
+        #          lob:
+        #            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+app:
+  iot:
+    key-value: "fasdfsad77678y9s"
+  events:
+    scanBasePackage: "com.crai.platform"
+    receivers:
+      receiverHandler:
+        exchangeName: "crai-events-2"
+        exchangeType: "topic"
+        queues: "test-queue-1"
+        routingKey: "crai.notifications.*"
+        eventType: "EventDto"
+        autoDeclare: "true"
+
+#        concurrentConsumers: 2
+        #        autoDelete: true
+        args:
+          arg.exchange.x-cache-ttl: "1000"
+          arg.queue.x-message-ttl: "60000"
+          arg.queue.durable: true
+#          arg.queue.autoDelete: true
+#          arg.exchange.durable: true
+
+          # arg.queue.autoDelete: true
+#        additionalHeaders:
+#          CamelSpringRabbitmqDeliveryTag: 2
+
+      receiverHandler2:
+        exchangeName: "crai-events-2"
+        exchangeType: "topic"
+        queues: "test-queue-2"
+        routingKey: "crai.alerts.*"
+        eventType: "EventDto"
+        autoDeclare: "true"
+#        routingKey: "3"
+        #        concurrentConsumers: 2
+        #        autoDelete: true
+        args:
+          arg.exchange.x-cache-ttl: "1000"
+          arg.queue.x-message-ttl: "60000"
+#          arg.exchange.autoDelete: true
+          # arg.queue.autoDelete: true
+    senders:
+      senderHandler:
+        exchangeName: "crai-events-2"
+        exchangeType: "topic"
+#        queues: "test-queue-2"
+        routingKey: "crai.notification2.2"
+        autoDeclare: "true"
+        eventType: "EventDto"
+        #        autoDelete: true
+        args:
+          arg.exchange.x-cache-ttl: "1000"
+          arg.queue.x-message-ttl: "60000"
+
+
+logging:
+  level:
+    org.hibernate.type: info

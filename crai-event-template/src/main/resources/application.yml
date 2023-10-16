@@ -1,0 +1,68 @@
+server:
+  port: 8082
+app:
+  security:
+    enabled: false
+spring:
+  # RabbitMq ConnectionFactory
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+  # Datasource BBDD
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userDb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 10
+      idle-timeout: 60000
+      minimum-idle: 4
+  jpa:
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        user_sql_comments: ture
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  jackson:
+    joda-date-time-format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    date-format: "yyyy-MM-dd"
+    default-property-inclusion: NON_NULL
+    serialization:
+      write-dates-as-timestamps: false
+
+
+#RabbitMQ Binders
+
+camel:
+  component:
+    spring-rabbitmq:
+#      connection-factory: com.crai.platform.starter.event.autoconfig.CustomRabbitConnectionFactory
+      enabled: true
+      test-connection-on-startup: true
+  dataformat:
+    json-jackson:
+      module-class-names: com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+      disable-features: WRITE_DATES_AS_TIMESTAMPS
+      auto-discover-object-mapper: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    env:
+      show-values: always
+
+
+logging:
+  level:
+    org.hibernate.type: info

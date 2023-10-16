@@ -1,0 +1,94 @@
+openapi: 3.0.3
+
+info: 
+  title: OpenAPI
+  version: '1.0'
+
+servers:
+  - url: https://vf0133.dev.vbinvent.iot.vodafone.com/Thingworx/Things/CRA.Hub/services
+  
+paths:
+  /getUserInfo:
+    summary: obtener informacion del usuario
+    post:
+      tags:
+        - userInfo
+      summary: Obtener informacion del usuario
+   
+      security:
+        - appKey: []
+      securitySchemes:
+        appKey:
+          type: apiKey
+          in: header
+          name: appKey  
+        
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+            
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userCity:
+                    type: string
+                    example: 'Cuenca'
+                  userAddress:
+                    type: string
+                    example: 'Cuenca'
+                  userLastName:
+                    type: string
+                    example: "Rodriguez"
+                  userPhoneNumber:
+                    type: string
+                    example: '231312113'
+                  userName:
+                    type: string
+                    example: "Carlos"
+                  birthdayDate:
+                    type: string
+                    example: ""
+                  pairedDevices:
+                    type: object
+                    properties:
+                      pairedDeviceId:
+                        type: string
+                        example: '258741369054698'
+                      pairedDeviceType:
+                        type: string
+                        example: "bracelet"
+                      devicePairingDate:
+                        type: string
+                        example: "1696859324579"
+        400:
+          description: Incorrect input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorMessage: 
+                    type: string
+                    example: "This user is not registered in the application"
+                  errorCode:
+                    type: string
+                    example: "101"
+                  userId:
+                    type: string
+                    example: "44"
+        401:
+          description: Unauthorized
+        
+          
+  

@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userDb
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdb:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect

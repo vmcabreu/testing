@@ -1,0 +1,2 @@
+com.crai.starter.jpa.config.CraiConfig
+com.crai.starter.jpa.handler.RestExceptionHandler

@@ -1,0 +1,11 @@
+package com.crai.starter.jpa.pojo;
+
+public enum ErrorCodeEnum {
+  ERR_MESSAGE_NOTREADABLE,
+  ERR_DEFAULT_CODE,
+  ERR_INTEGRITY_CODE,
+  ERR_VALIDATION_CODE,
+  ERR_DATA_CODE,
+  ERR_SERVICE_CODE,
+  ERR_DATAEXIST_CODE
+}

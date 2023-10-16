@@ -1,0 +1,3 @@
+com.crai.platform.starter.event.autoconfig.EventsAutoConfiguration
+com.crai.platform.starter.event.autoconfig.EventsCamelAutoConfig
+com.crai.platform.starter.event.autoconfig.EventTypeAutoConfig

@@ -1,0 +1,56 @@
+server:
+  port: 8081
+app:
+  logging:
+    properties:
+      includeQueryString: true
+      includePayload: true
+      includeHeaders: false
+      maxPayloadLength: 10000
+      afterMessagePrefix: "????????????????------REQUEST DATA:   ------------------------ "
+  security:
+    enabled: false
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userDb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 10
+      idle-timeout: 60000
+      minimum-idle: 4
+  jpa:
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        user_sql_comments: ture
+        format_sql: true
+#        jdb:
+#          lob:
+#            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  jackson:
+    joda-date-time-format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    date-format: "yyyy-MM-dd"
+    default-property-inclusion: NON_NULL
+    serialization:
+      write-dates-as-timestamps: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    env:
+      show-values: always
+
+
+logging:
+  level:
+    org.hibernate.type: trace

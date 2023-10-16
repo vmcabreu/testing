@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.crai.platform</groupId>
+        <artifactId>crai-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../crai-parent</relativePath>
+    </parent>
+    <groupId>com.crai.platform</groupId>
+    <artifactId>crai-starter-reactive-rabbitmq</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Archetype - crai-rabbitmq-starter</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <reactor-rabbitmq.version>1.5.4</reactor-rabbitmq.version>
+        <amqp-client.version>5.14.2</amqp-client.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor.rabbitmq</groupId>
+            <artifactId>reactor-rabbitmq</artifactId>
+            <version>${reactor-rabbitmq.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${amqp-client.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-amqp -->
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-amqp</artifactId>
+            <!--			<version>2.4.3</version>-->
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+</project>
